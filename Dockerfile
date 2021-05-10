@@ -4,5 +4,6 @@ RUN apk update \
   && apk add bash \
   && rm -rf /var/cache/apk/*
 COPY . . 
+RUN chmod +x ./scripts/wait-for-it.sh
 RUN yarn install --frozen-lockfile
 RUN yarn prisma generate

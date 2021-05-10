@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
-on: 
+# Controls when the action will run.
+on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+    branches: [main]
+  #   pull_request:
+  #     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Migrate database
-        run: docker-compose -f docker-compose.test.yml run --rm server yarn prisma migrate dev
-        
+        run: docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 --  prisma migrate dev
+
       - name: Run Tests
-        run: docker-compose -f docker-compose.test.yml run --rm server yarn jest -i
+        run: docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn jest -i

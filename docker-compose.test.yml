@@ -8,7 +8,7 @@ services:
       target: base
     environment:
       SERVER_DATABASE_NAME: test_db
-      PRISMA_DATABASE_URL: mysql://root:root@database:3306/test_db?schema=public&connection_timeout=30
+      PRISMA_DATABASE_URL: mysql://root:root@database:3306/test_db?schema=public
     ports:
       - 9999:80
     volumes:
@@ -20,7 +20,7 @@ services:
       - database
 
   database:
-    image: mariadb:10.5.8
+    image: mysql:5.7
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root

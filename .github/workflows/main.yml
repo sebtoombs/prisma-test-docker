@@ -34,4 +34,4 @@ jobs:
         run: docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn prisma migrate dev
 
       - name: Run Tests
-        run: docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn jest -i
+        run: docker-compose -f docker-compose.test.yml run --rm server ./scripts/wait-for-it.sh database:3306 -- yarn test -i
